@@ -68,7 +68,12 @@ class MResponseMatrix
   void SetSimulatedEvents(long SimulatedEvents) { m_NumberOfSimulatedEvents = SimulatedEvents; }
   // Get he number of simulated events which generated this response
   long GetSimulatedEvents() const { return m_NumberOfSimulatedEvents; }
-  
+
+ // The polarization mode used for the response
+  void SetPolarizationMode(MString polarizationmode) { m_PolarizationMode = polarizationmode; }
+  // Get the polarization mode
+  MString GetPolarizationMode() const { return m_PolarizationMode; }
+
   //! Set the start area of far-field simulations
   void SetFarFieldStartArea(double Area) { m_FarFieldStartArea = Area; }
   //! Get the start are aof far-field simulations
@@ -123,6 +128,9 @@ class MResponseMatrix
 
   //! The spectral type (Linear, Mono, Powerlaw)
   MString m_SpectralType;
+
+  //! The polarization mode (relativex, relativey, or relativez)
+  MString m_PolarizationMode;
 
   //! The spectral parameters (depend on type)
   vector<double> m_SpectralParameters;
