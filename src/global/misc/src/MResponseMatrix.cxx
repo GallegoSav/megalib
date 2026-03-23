@@ -60,7 +60,7 @@ const float MResponseMatrix::c_ShowNo = numeric_limits<float>::max()/2.25;
 ////////////////////////////////////////////////////////////////////////////////
 
 
-MResponseMatrix::MResponseMatrix() : m_Name("Unnamed response matrix"), m_Order(0), m_NumberOfSimulatedEvents(0), m_FarFieldStartArea(0), m_SpectralType(""), m_Hash(0)
+MResponseMatrix::MResponseMatrix() : m_Name("Unnamed response matrix"), m_Order(0), m_NumberOfSimulatedEvents(0), m_FarFieldStartArea(0), m_SpectralType(""), m_Hash(0), m_PolarizationMode("")
 {
   // default constructor
 }
@@ -69,7 +69,7 @@ MResponseMatrix::MResponseMatrix() : m_Name("Unnamed response matrix"), m_Order(
 ////////////////////////////////////////////////////////////////////////////////
 
 
-MResponseMatrix::MResponseMatrix(MString Name) : m_Name(Name), m_Order(0), m_NumberOfSimulatedEvents(0), m_FarFieldStartArea(0), m_SpectralType(""), m_Hash(0)
+MResponseMatrix::MResponseMatrix(MString Name) : m_Name(Name), m_Order(0), m_NumberOfSimulatedEvents(0), m_FarFieldStartArea(0), m_SpectralType(""), m_Hash(0), m_PolarizationMode("")
 {
   // default constructor
 }
@@ -98,6 +98,7 @@ void MResponseMatrix::Clear()
   m_SpectralType = "";
   m_SpectralParameters.clear();
   m_Hash = 0;
+  m_PolarizationMode = "";
 }
 
 
@@ -127,6 +128,9 @@ void MResponseMatrix::WriteHeader(ostringstream& out)
   for (unsigned int p = 0; p < m_SpectralParameters.size(); ++p) {
     out<<" "<<m_SpectralParameters[p];
   }
+  out<<endl;
+  out<<"# The polarization mode (empty if not set)"<<endl;
+  out<<"PO "<<m_PolarizationMode<<endl;
   out<<endl;
   out<<endl;
 }
